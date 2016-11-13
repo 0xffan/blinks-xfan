@@ -2,9 +2,9 @@
 
 function _prompt_char() {
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    echo "%{%F{blue}%}±%{%f%k%b%}"
+    echo "%{%F{magenta}%}± %#%{%f%k%b%}"
   else
-    echo '%{%F{blue}%}%{%f%k%b%}'
+    echo '%{%F{magenta}%} %#%{%f%k%b%}'
   fi
 }
 
@@ -18,12 +18,12 @@ case ${SOLARIZED_THEME:-dark} in
     *)     bkg=black;;
 esac
 
-ZSH_THEME_GIT_PROMPT_PREFIX=" [%{%B%F{blue}%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{%f%b%B%F{green}%}]"
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{%F{red}%}*%{%f%k%b%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}[%{$reset_color%}%{$fg[blue]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}%{$fg[yellow]%}]%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$reset_color%}%{$fg[red]%}*%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-PROMPT='%{%f%k%b%}%{%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%} %{%b%F{yellow}%}%~%{%B%F{green}%}$(git_prompt_info)%E%{%f%k%b%}
-$(_prompt_char) %#%{%f%k%b%} '
+PROMPT='%{$fg[blue]%}%n%{$reset_color%}%{$fg[yellow]%}@%{$reset_color%}%{$fg[cyan]%}%m%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}$(git_prompt_info)
+$(_prompt_char) '
 
 # RPROMPT='!%{%B%F{cyan}%}%!%{%f%k%b%}'
